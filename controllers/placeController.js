@@ -23,7 +23,6 @@ exports.createPlace = async (req, res) => {
                 item.name && item.description && item.images.length > 0
             )
         };
-
         const newPlace = new Place(placeData);
         const savedPlace = await newPlace.save();
         res.status(201).json(savedPlace);

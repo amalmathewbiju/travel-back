@@ -1,4 +1,4 @@
-let bookings = []; // In-memory storage for bookings
+let bookings = [];
 
 exports.createBooking = (req, res) => {
     const booking = { id: Date.now().toString(), ...req.body };

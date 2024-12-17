@@ -11,10 +11,6 @@ exports.getAllHotels = async (req, res) => {
 
 exports.createHotel = async (req, res) => {
     try {
-        // Log incoming data for verification
-        console.log('Received hotel data:', req.body);
-
-        // Create hotel data without splitting already-processed arrays
         const hotelData = {
             name: req.body.name,
             description: req.body.description,
@@ -26,7 +22,6 @@ exports.createHotel = async (req, res) => {
             rooms: req.body.rooms,
             surroundings: req.body.surroundings
         };
-
         const newHotel = new Hotel(hotelData);
         const savedHotel = await newHotel.save();
         const populatedHotel = await Hotel.findById(savedHotel._id).populate('placeId');
@@ -63,7 +58,6 @@ exports.updateHotel = async (req, res) => {
                 features: room.features.split(',').map(f => f.trim())
             }))
         };
-
         const updatedHotel = await Hotel.findByIdAndUpdate(
             req.params.id,
             hotelData,
